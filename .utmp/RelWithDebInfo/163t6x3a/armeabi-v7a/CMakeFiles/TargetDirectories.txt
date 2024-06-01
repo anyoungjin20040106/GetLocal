@@ -1,0 +1,5 @@
+D:/Getlocal/.utmp/RelWithDebInfo/163t6x3a/armeabi-v7a/CMakeFiles/edit_cache.dir
+D:/Getlocal/.utmp/RelWithDebInfo/163t6x3a/armeabi-v7a/CMakeFiles/rebuild_cache.dir
+D:/Getlocal/.utmp/RelWithDebInfo/163t6x3a/armeabi-v7a/FramePacing/CMakeFiles/swappywrapper.dir
+D:/Getlocal/.utmp/RelWithDebInfo/163t6x3a/armeabi-v7a/FramePacing/CMakeFiles/edit_cache.dir
+D:/Getlocal/.utmp/RelWithDebInfo/163t6x3a/armeabi-v7a/FramePacing/CMakeFiles/rebuild_cache.dir
