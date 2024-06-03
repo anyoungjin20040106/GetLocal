@@ -7,8 +7,8 @@ using UnityEngine.UI;
 public class AppScript : MonoBehaviour
 {
     [SerializeField] string URL;
-    [SerializeField] Text text;
-    bool fail;
+    Text text;
+    bool fail;//GPS허용 상태를 의미하는 변수
     public void OnClick()//버튼이 클릭했을떄 실행되는 메소드
     {
         if(fail)
@@ -17,12 +17,13 @@ public class AppScript : MonoBehaviour
             StartCoroutine(GetLocal());
     }
     void Start(){
+        text=GetComponent<Text>();
         StartCoroutine(StartLocationService());
     }
      IEnumerator StartLocationService()
     {
         this.fail=true;
-        if (Application.platform == RuntimePlatform.Android)//안드로이드면 실행 한다
+        if (Application.platform == RuntimePlatform.Android)//안드로이드 인가?
         {
             if (!Permission.HasUserAuthorizedPermission(Permission.FineLocation))//허용을 못받았는가?
             {
@@ -84,7 +85,7 @@ public class AppScript : MonoBehaviour
                     text.text = result.local;//json에 저장한 loalc값을 출력한다
                 }
                 else
-                    text.text = "오류입니다. 다시 해주시길 바랍니다/";//다시하라고 한다
+                    text.text = "오류입니다. 다시 해주시길 바랍니다.";//다시하라고 한다
             }
         }
     
