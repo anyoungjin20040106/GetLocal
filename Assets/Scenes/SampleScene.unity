@@ -302,7 +302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6caca6d8f4e10340ad0a1beac637419, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  URL: https://195bd79f-813b-4694-9aef-dfa81c384064-00-3pgn9ep06ez2i.pike.replit.dev
+  URL: https://020b2b82-3f14-422e-a6c3-c71c76347a29-00-z65gzgiovr9o.pike.replit.dev
 --- !u!1 &781942976
 GameObject:
   m_ObjectHideFlags: 0
@@ -647,7 +647,7 @@ GameObject:
   - component: {fileID: 2134353016}
   m_Layer: 5
   m_Name: Button (Legacy)
-  m_TagString: Untagged
+  m_TagString: btn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

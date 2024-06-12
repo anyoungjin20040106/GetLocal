@@ -6,19 +6,24 @@ using UnityEngine.UI;
 
 public class AppScript : MonoBehaviour
 {
-    [SerializeField] string URL;
+    [SerializeField] string URL;//fastapi URL
     Text text;
+    Button btn;
     bool fail;//GPS허용 상태를 의미하는 변수
-    public void OnClick()//버튼이 클릭했을떄 실행되는 메소드
-    {
-        if(fail)
-            StartCoroutine(StartLocationService());
+    void Start(){//실행되자마자 한번만 실행되는 메서드
+        text=GetComponent<Text>();//해당 오브젝트의 text 객체를 가져온다
+        btn=GameObject.FindWithTag("btn").GetComponent<Button>();//btn이라는 오브젝트를 찾은후 Button객체를 찾는다
+        StartCoroutine(StartLocationService());//코루틴을 시작한다
+        btn.onClick.AddListener(()=>{//btn을 클릭 할떄 나오는 함수
+        if(fail)//fail이 true면
+            StartCoroutine(StartLocationService());//StartLocationService코루틴을 실행한다
         if(!fail)
-            StartCoroutine(GetLocal());
+            StartCoroutine(GetLocal());//지역을 가져온다
+            });
     }
-    void Start(){
-        text=GetComponent<Text>();
-        StartCoroutine(StartLocationService());
+    void Update(){//계속 실행되는 메서드
+        if(Input.GetKeyDown(KeyCode.Escape))//ESC키(모바일 상에서는 뒤로가기 버튼)를 눌었으면?
+            Application.Quit();//나간다
     }
      IEnumerator StartLocationService()
     {
@@ -66,8 +71,9 @@ public class AppScript : MonoBehaviour
             text.text = "GPS 활성화 성공. 버튼을 눌러주세요";
         }
     }
-    IEnumerator GetLocal()
+    IEnumerator GetLocal()//웹에다가 해당 유저의 위도와 경도를 올린후 결과값을 받아오는 메서드
     {
+            text.text = "결과를 가져오는 중";
         if (!Input.location.isEnabledByUser)//GPS가 활성화 돼지 않으면?
         {
             text.text = "GPS를 활성화 해주세요.";
@@ -76,7 +82,7 @@ public class AppScript : MonoBehaviour
             WWWForm form = new WWWForm();//fastapi에 올릴 폼을 만든다
             form.AddField("x", Input.location.lastData.longitude.ToString());//x에 경도값을 넣는다
             form.AddField("y", Input.location.lastData.latitude.ToString());//y에 위도값을 넣는다
-            using (UnityWebRequest www = UnityWebRequest.Post(URL + "/getlocal", form))//post를 써서 form데이터를 보낸다
+            using (UnityWebRequest www = UnityWebRequest.Post(URL, form))//post를 써서 form데이터를 보낸다
             {
                 yield return www.SendWebRequest();//요청이 될떄까지 기다린다
                 if (www.result == UnityWebRequest.Result.Success)//접속이 성공하면
